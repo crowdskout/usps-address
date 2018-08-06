@@ -405,10 +405,15 @@ class UspsAddressNorm extends UspsAddress
 		// for example, ["123", "one", "hundred", "and", "first", "st"] will become
 		//     [123, 1, 100, 0, 1, 0]
 		//
+        $wordsWithoutFractions = array_map(function ($v) {
+            if (strpos($v, '/') === false){
+               return $v;
+            }
+        }, $words);
 		$numbers = array_map(function ($v) {
 			return \Jstewmc\PhpHelpers\Num::val($v);
-		}, $words);	
-		
+		}, $wordsWithoutFractions);
+
 		// if the street address has numeric words
 		// for example, in the example above, there are three "number words" ("one", 
 		//     "hundred", and "first")
