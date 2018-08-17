@@ -308,7 +308,7 @@ class UspsAddressNorm extends UspsAddress
 	protected static function reduce($string)
 	{	
 		if ($string !== null && is_string($string)) {
-			$string = strtolower(trim($string));	
+			$string = mb_strtolower(trim($string));	
 		} else {
 			throw new \InvalidArgumentException(
 				__METHOD__."() expects parameter one to be a string"
